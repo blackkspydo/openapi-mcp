@@ -58,6 +58,7 @@ bun run start
 | `validate_payload` | Validate JSON against schema |
 | `generate_sample` | Generate sample request payload |
 | `generate_typescript_types` | Generate TypeScript interfaces from schemas |
+| `generate_curl` | Generate ready-to-use cURL command |
 | `get_auth_schemes` | Get security schemes |
 | `get_servers` | Get available API servers |
 
@@ -69,6 +70,8 @@ You: Load the Petstore API spec from https://petstore.swagger.io/v2/swagger.json
 You: List all POST endpoints
 
 You: Generate TypeScript types for the Pet schema
+
+You: Generate a cURL command for POST /pet
 
 You: Generate a sample request for POST /pet
 ```

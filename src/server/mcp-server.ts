@@ -16,6 +16,7 @@ import {
   handleGetAuthSchemes,
   handleGetServers,
   handleGenerateTypescriptTypes,
+  handleGenerateCurl,
 } from "../tools";
 
 import { logger } from "../utils";
@@ -233,7 +234,42 @@ function registerTools() {
     }
   );
 
-  logger.info("Registered 11 MCP tools");
+  // generate_curl
+  server.registerTool(
+    "generate_curl",
+    {
+      description: "Generate a ready-to-use cURL command for an API endpoint. Includes sample request body, auth headers, and path/query parameters. Copy-paste to terminal or import into Postman.",
+      inputSchema: {
+        path: z.string().min(1).describe("API path (e.g., /pet/{petId})"),
+        method: HttpMethodEnum.describe("HTTP method"),
+        baseUrl: z.string().optional().describe("Base URL to use (defaults to first server in spec)"),
+        authToken: z.string().optional().describe("Auth token to include in request"),
+        authType: z.enum(["bearer", "basic", "api-key"]).optional().describe("Type of auth (default: bearer)"),
+        apiKeyHeader: z.string().optional().describe("Header name for API key auth (default: X-API-Key)"),
+        pathParams: z.record(z.string(), z.string()).optional().describe("Path parameter values as JSON object"),
+        queryParams: z.record(z.string(), z.string()).optional().describe("Query parameter values as JSON object"),
+        includeOptional: z.boolean().optional().describe("Include optional fields in request body (default: false)"),
+      },
+    },
+    async (args) => {
+      const result = await handleGenerateCurl(args as {
+        path: string;
+        method: string;
+        baseUrl?: string;
+        authToken?: string;
+        authType?: "bearer" | "basic" | "api-key";
+        apiKeyHeader?: string;
+        pathParams?: Record<string, string>;
+        queryParams?: Record<string, string>;
+        includeOptional?: boolean;
+      });
+      return {
+        content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      };
+    }
+  );
+
+  logger.info("Registered 12 MCP tools");
 }
 
 // Start the server

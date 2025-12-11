@@ -9,4 +9,6 @@ export { handleGenerateSample } from "./generate-sample";
 export { handleGetAuthSchemes } from "./get-auth-schemes";
 export { handleGetServers } from "./get-servers";
 export { handleGenerateTypescriptTypes } from "./generate-typescript-types";
+export { handleGenerateCurl } from "./generate-curl";
+
 
