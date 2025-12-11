@@ -4,11 +4,12 @@ An MCP server that lets LLMs inspect and interact with OpenAPI specifications.
 
 ## Features
 
-- Load OpenAPI specs from URL or file
+- Load OpenAPI specs from URL or file (OpenAPI 2.0 & 3.x)
 - List and search endpoints
 - Get request/response schemas (fully dereferenced)
 - Validate payloads against schemas
 - Generate sample request payloads
+- Generate TypeScript types from schemas
 - Extract authentication schemes
 
 ## Installation
@@ -56,6 +57,7 @@ bun run start
 | `get_response_schema` | Get response schema by status code |
 | `validate_payload` | Validate JSON against schema |
 | `generate_sample` | Generate sample request payload |
+| `generate_typescript_types` | Generate TypeScript interfaces from schemas |
 | `get_auth_schemes` | Get security schemes |
 | `get_servers` | Get available API servers |
 
@@ -66,9 +68,12 @@ You: Load the Petstore API spec from https://petstore.swagger.io/v2/swagger.json
 
 You: List all POST endpoints
 
+You: Generate TypeScript types for the Pet schema
+
 You: Generate a sample request for POST /pet
 ```
 
 ## License
 
 MIT
+

@@ -8,3 +8,5 @@ export { handleValidatePayload } from "./validate-payload";
 export { handleGenerateSample } from "./generate-sample";
 export { handleGetAuthSchemes } from "./get-auth-schemes";
 export { handleGetServers } from "./get-servers";
+export { handleGenerateTypescriptTypes } from "./generate-typescript-types";
+

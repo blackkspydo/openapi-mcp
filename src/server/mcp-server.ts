@@ -15,6 +15,7 @@ import {
   handleGenerateSample,
   handleGetAuthSchemes,
   handleGetServers,
+  handleGenerateTypescriptTypes,
 } from "../tools";
 
 import { logger } from "../utils";
@@ -207,7 +208,32 @@ function registerTools() {
     }
   );
 
-  logger.info("Registered 10 MCP tools");
+  // generate_typescript_types
+  server.registerTool(
+    "generate_typescript_types",
+    {
+      description: "Generate TypeScript interfaces/types from OpenAPI schemas. Use schemaName to generate from a component schema (e.g., 'Pet'), or use path+method to generate request/response types for an endpoint.",
+      inputSchema: {
+        schemaName: z.string().optional().describe("Name of the schema from components/schemas (e.g., 'Pet', 'Order')"),
+        path: z.string().optional().describe("API path to generate types for (e.g., /pet)"),
+        method: HttpMethodEnum.optional().describe("HTTP method (required if path is provided)"),
+        includeComments: z.boolean().optional().describe("Include JSDoc comments from schema descriptions (default: true)"),
+      },
+    },
+    async (args) => {
+      const result = await handleGenerateTypescriptTypes(args as {
+        schemaName?: string;
+        path?: string;
+        method?: string;
+        includeComments?: boolean;
+      });
+      return {
+        content: [{ type: "text", text: JSON.stringify(result, null, 2) }],
+      };
+    }
+  );
+
+  logger.info("Registered 11 MCP tools");
 }
 
 // Start the server
