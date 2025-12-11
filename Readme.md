@@ -14,7 +14,7 @@ An MCP server that lets LLMs inspect and interact with OpenAPI specifications.
 ## Installation
 
 ```bash
-git clone https://github.com/your-username/openapi-mcp.git
+git clone https://github.com/blackkspydo/openapi-mcp.git
 cd openapi-mcp
 bun install
 ```
