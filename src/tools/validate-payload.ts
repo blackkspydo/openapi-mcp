@@ -18,7 +18,17 @@ export async function handleValidatePayload(input: ValidatePayloadInput) {
       );
     }
 
-    const result = validatePayload(input.payload, schemaResult.schema);
+    // Parse payload if it's a JSON string
+    let payload = input.payload;
+    if (typeof payload === "string") {
+      try {
+        payload = JSON.parse(payload);
+      } catch {
+        // Not valid JSON, keep as string (will likely fail validation)
+      }
+    }
+
+    const result = validatePayload(payload, schemaResult.schema);
 
     const response: ValidationResponse = {
       valid: result.valid,
