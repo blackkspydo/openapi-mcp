@@ -37,6 +37,12 @@ bun run build
 
 ## Usage
 
+### With Claude CLI
+
+```bash
+claude mcp add openapi-mcp -- npx --yes @blackkspydo/openapi-mcp
+```
+
 ### With Claude Desktop
 
 Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
