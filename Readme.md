@@ -23,7 +23,7 @@ npm install -g @blackkspydo/openapi-mcp
 Or run directly with npx:
 
 ```bash
-npx @blackkspydo/openapi-mcp
+npx --yes @blackkspydo/openapi-mcp
 ```
 
 ### From source
@@ -44,9 +44,9 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "openapi": {
+    "openapi-mcp": {
       "command": "npx",
-      "args": ["@blackkspydo/openapi-mcp"]
+      "args": ["--yes", "@blackkspydo/openapi-mcp"]
     }
   }
 }
@@ -57,7 +57,7 @@ Or if installed globally:
 ```json
 {
   "mcpServers": {
-    "openapi": {
+    "openapi-mcp": {
       "command": "openapi-mcp"
     }
   }
@@ -67,9 +67,9 @@ Or if installed globally:
 ### Standalone
 
 ```bash
-@blackkspydo/openapi-mcp
+openapi-mcp
 # or
-npx @blackkspydo/openapi-mcp
+npx --yes @blackkspydo/openapi-mcp
 ```
 
 ## Available Tools
