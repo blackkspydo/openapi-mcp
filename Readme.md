@@ -14,10 +14,25 @@ An MCP server that lets LLMs inspect and interact with OpenAPI specifications.
 
 ## Installation
 
+### Via npm (recommended)
+
+```bash
+npm install -g @blackkspydo/openapi-mcp
+```
+
+Or run directly with npx:
+
+```bash
+npx @blackkspydo/openapi-mcp
+```
+
+### From source
+
 ```bash
 git clone https://github.com/blackkspydo/openapi-mcp.git
 cd openapi-mcp
 bun install
+bun run build
 ```
 
 ## Usage
@@ -30,19 +45,31 @@ Add to `~/Library/Application Support/Claude/claude_desktop_config.json`:
 {
   "mcpServers": {
     "openapi": {
-      "command": "/opt/homebrew/bin/bun",
-      "args": ["run", "/path/to/openapi-mcp/src/index.ts"]
+      "command": "npx",
+      "args": ["@blackkspydo/openapi-mcp"]
     }
   }
 }
 ```
 
-> **Note**: Use the full path to `bun` (run `which bun` to find it).
+Or if installed globally:
+
+```json
+{
+  "mcpServers": {
+    "openapi": {
+      "command": "openapi-mcp"
+    }
+  }
+}
+```
 
 ### Standalone
 
 ```bash
-bun run start
+@blackkspydo/openapi-mcp
+# or
+npx @blackkspydo/openapi-mcp
 ```
 
 ## Available Tools
